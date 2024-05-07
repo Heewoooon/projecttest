@@ -12,6 +12,7 @@ function App() {
 
       <h1>으휴 비밀번호도 몰라요</h1>
       </div>
+  )
 }
 
 export default App;
