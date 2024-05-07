@@ -9,6 +9,7 @@ function App() {
       <h3>안뇽안뇽! 내가 바로 공유를 해볼겡! ㅎㅎㅎ 다들 꿀 빨고 있어?</h3>
       <h1>달다 달어</h1>
       <img src='https://i.ytimg.com/vi/Vmsnj_eluoY/maxresdefault.jpg'>그려그려</img>
+       <p>여기에 하고싶은 말 적는거 맞지?ㅎㅎㅎ즐겁다 즐거워</p>
     </div>
   );
 }
