@@ -9,7 +9,7 @@ function App() {
       <h3>안뇽안뇽! 내가 바로 공유를 해볼겡! ㅎㅎㅎ 다들 꿀 빨고 있어?</h3>
       <h1>달다 달어</h1>
       <h3>태은이가 좋아하는 랜덤 게임? 무슨 게임? 게임 스타트! 게임 스타트!</h3>
-      <img src='https://i.ytimg.com/vi/Vmsnj_eluoY/maxresdefault.jpg'>그려그려</img>
+      <img src='https://i.ytimg.com/vi/Vmsnj_eluoY/maxresdefault.jpg'></img>
     </div>
   );
 
