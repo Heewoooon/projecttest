@@ -18,6 +18,32 @@ app.get('/', (req, res) => {
     app.use('index');
 });
 
+app.post("/logintry",async (req,res)=>{
+    console.log("로그인 시도")
+    let {id,pw} = req.body;
+
+    let sql =`select user_nick from user_info where user_id = '${id}' and user_pw = '${pw}'`
+    console.log(id,pw)
+    // 여기서 데이터베이스 작업을 수행합니다.
+    try {
+        const connection = await conn();
+        // 이제 connection 객체를 사용하여 데이터베이스 작업을 수행할 수 있습니다.
+        
+        // 예: 간단한 쿼리 실행
+        const result = await connection.execute(sql);
+        console.log(result.rows);
+        res.json(result.rows[0])
+
+        // 연결 해제
+        await connection.close();
+    } catch (error) {
+        console.error('데이터베이스 작업 중 오류가 발생했습니다:', error);
+    }
+
+})
+
+
+
 app.post("/datat", async (req,res)=>{
     console.log("데이터 전송 시도")
     const data = req.body.data
@@ -56,4 +82,4 @@ app.get("/databasetest",(req,res)=>{
 
 app.listen(3000, () => {
     console.log('Node.js server is running on port 3000');
-});
+})
