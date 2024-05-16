@@ -1,0 +1,44 @@
+.App {
+    text-align: left;
+    padding: 5%;
+}
+
+.loginbox2 {
+    display:  flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.container{
+    padding: 7%;
+    width: 55%;
+}
+  
+.formBox {
+    text-align: left;
+    padding: 5%;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+}
+
+label + input {
+    margin-left: 30px;
+}
+
+#imgcss {
+        margin: auto;
+        display: block;
+        padding: 5% 0 5% 0 ; 
+        /* 위 오른쪽 아래 왼쪽 */
+}
+.doglabel{
+    width: 20%;
+   
+}
+.btn2{
+    width: 50%;
+}
