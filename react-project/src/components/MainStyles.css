@@ -1,0 +1,22 @@
+.Maincontainer {
+    padding: 7%;
+    width: 65%;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardbox1 {
+    width: 30%;
+    display: inline-block;
+    align-items: center;
+    margin-left: 20px;
+
+}
+.cardbox2 {
+    width: 30%;
+    display: inline-block;
+    align-items: center;
+    margin-right: 20px;
+
+}
