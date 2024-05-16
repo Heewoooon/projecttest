@@ -11,13 +11,13 @@
 
 .container{
     padding: 7%;
-    width: 40%;
+    width: 30%;
 }
   
 .formBox {
     text-align: left;
     padding: 5%;
-    width: 100%;
+    width: 95%;
 }
 
 h1 {
@@ -43,3 +43,8 @@ label {
     width: 10px;
 }
 
+p {
+    text-align: center;
+    font-size: 15px;
+
+}
