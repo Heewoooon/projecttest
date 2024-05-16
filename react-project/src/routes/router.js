@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const conn = require('../../../DB/db');
 const path = require("path");
 
 // 메인 

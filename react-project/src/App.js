@@ -1,17 +1,23 @@
 import './App.css';
-import List from './components/List';
 import Login from './components/Login';
 import Main from './components/Main';
-import {Router, Routes, Route} from "react-router-dom";
+import {Router, Routes, Route,Link} from "react-router-dom";
+import { NavBar } from './components/NavBar';
+import Board from './components/Board';
+import Iot from './components/Iot';
+import Join from './components/Join';
 
 
 function App() {
   return (
     <div>
+      <NavBar />
       <Routes>
         <Route path = '/' element={<Main/>}></Route>
-        <Route path = '/list' element={<List/>}></Route>
+        <Route path = '/board' element={<Board />}></Route>
+        <Route path = '/iot' element={<Iot/>}></Route>
         <Route path = '/login' element={<Login/>}></Route>
+        <Route path = '/join' element={<Join/>}></Route>
       </Routes>
     </div>
   );

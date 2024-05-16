@@ -1,27 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import App from './App';
-import App from './components/Main';
-import List from './components/List';
+import App from './App';
 import Login from './components/Login';
 import Main from './components/Main';
 import { BrowserRouter, Link , Routes, Route} from 'react-router-dom';
 import './App.css';
+import { NavBar } from './components/NavBar';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <div>
-        <List/>
         <BrowserRouter>
-            <Link to={'/'}>main</Link>
-            <Link to={'/login'}>login</Link>
-            <Routes>
-                <Route path = '/' element={<Main/>}></Route>
-                <Route path = '/list' element={<List/>}></Route>
-                <Route path = '/login' element={<Login/>}></Route>
-            </Routes>
+            <App />
         </BrowserRouter>
     </div>
 );
