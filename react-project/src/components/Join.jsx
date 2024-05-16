@@ -14,11 +14,11 @@ const Join = () => {
           </div>
           <div class="mb-3 loginbox2">
             <label for="formGroupExampleInput2" class="form-label doglabel">비밀번호</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="비밀번호를 입력해주세요"/>
+            <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="비밀번호를 입력해주세요"/>
           </div>
           <div class="mb-3 loginbox2">
             <label for="formGroupExampleInput" class="form-label doglabel">비밀번호확인</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="비밀번호를 확인해주세요"/>
+            <input type="password" class="form-control" id="formGroupExampleInput" placeholder="비밀번호를 확인해주세요"/>
           </div>
           <div class="mb-3 loginbox2">
             <label for="formGroupExampleInput" class="form-label doglabel">이름</label>

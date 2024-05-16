@@ -1,0 +1,45 @@
+.App {
+    text-align: left;
+    padding: 5%;
+}
+
+.loginbox2 {
+    display:  flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    padding: 7%;
+    width: 40%;
+}
+  
+.formBox {
+    text-align: left;
+    padding: 5%;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+}
+
+label + input {
+    margin-left: 30px;
+}
+
+#imgcss {
+        margin: auto;
+        display: block;
+        padding-top: 30px;
+}
+
+.btn2 {
+    width: 70%;
+
+}
+
+label {
+    width: 10px;
+}
+
