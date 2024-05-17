@@ -6,7 +6,7 @@ import { NavBar } from './components/NavBar';
 import Board from './components/Board';
 import Iot from './components/Iot';
 import Join from './components/Join';
-
+import Createboard from './components/Createboard';
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
         <Route path = '/iot' element={<Iot/>}></Route>
         <Route path = '/login' element={<Login/>}></Route>
         <Route path = '/join' element={<Join/>}></Route>
+        <Route path = '/createboard' element={<Createboard/>}></Route>
       </Routes>
     </div>
   );

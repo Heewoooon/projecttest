@@ -22,21 +22,21 @@ app.get('/', (req, res) => {
 app.post("/addmem",async (req,res)=> {
     console.log("회원가입 시도")
     let {id,pw,name,nick,phone} = req.body;
-    // let sql =`insert into user_info values(1,'${id}','${pw}','${name}','${nick}','${phone}')`
+    let sql =`insert into user_info values(1,'${id}','${pw}','${name}','${nick}','${phone}')`
 
-    // try {
-    //     const connection = await conn();
-    //     // 이제 connection 객체를 사용하여 데이터베이스 작업을 수행할 수 있습니다.
+    try {
+        const connection = await conn();
+        // 이제 connection 객체를 사용하여 데이터베이스 작업을 수행할 수 있습니다.
         
-    //     // 예: 간단한 쿼리 실행
-    //     const result = await connection.execute(sql,[],{ autoCommit: true });
-    //     console.log('Row inserted:', result.rowsAffected);
+        // 예: 간단한 쿼리 실행
+        const result = await connection.execute(sql,[],{ autoCommit: true });
+        console.log('Row inserted:', result.rowsAffected);
 
-    //     // 연결 해제
-    //     await connection.close();
-    // } catch (error) {
-    //     console.error('데이터베이스 작업 중 오류가 발생했습니다:', error);
-    // }
+        // 연결 해제
+        await connection.close();
+    } catch (error) {
+        console.error('데이터베이스 작업 중 오류가 발생했습니다:', error);
+    }
 })
 
 app.post("/logintry",async (req,res)=>{
@@ -63,7 +63,34 @@ app.post("/logintry",async (req,res)=>{
 
 })
 
+app.post("/boardloading",async (req,res)=>{
+    console.log("게시판페이지 로딩")
+    const data = req.body.message
+    console.log(data)
+    if (data == "boardloading") {
+        let sql =`select b_title,DBMS_LOB.SUBSTR(b_content, 3000, 1) as C1,DBMS_LOB.SUBSTR(b_content, 4000, 3001) as C2,user_id from board_info `
+        // let sql =`select b_content from board_info `
+        // 여기서 데이터베이스 작업을 수행합니다.
+        try {
+            const connection = await conn();
+            // 이제 connection 객체를 사용하여 데이터베이스 작업을 수행할 수 있습니다.
+            
+            const result = await connection.execute(sql);
+            console.log("server:",result.rows);
+            res.json(result.rows);
+                // res.json({title : result.rows[0][0],
+                //     content : result.rows[0][1],
+                //     content2 : result.rows[0][2],
+                //     user : result.rows[0][3]
+                // })
 
+            // 연결 해제
+            await connection.close();
+        } catch (error) {
+            console.error('데이터베이스 작업 중 오류가 발생했습니다:', error);
+        }
+    }
+})
 
 app.post("/datat", async (req,res)=>{
     console.log("데이터 전송 시도")

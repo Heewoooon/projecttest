@@ -1,0 +1,14 @@
+.BoardContainer {
+    padding: 7%;
+    width: 65%;
+    /* display: flex; */
+    margin-left: 300px;
+}
+
+.Boards {
+    margin-top: 1%;
+}
+
+.numlist{
+    margin-top: 3%;
+}
