@@ -7,6 +7,7 @@ import Board from './components/Board';
 import Iot from './components/Iot';
 import Join from './components/Join';
 import Createboard from './components/Createboard';
+import BoradDetail from './components/BoradDetail';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path = '/' element={<Main/>}></Route>
         <Route path = '/board' element={<Board />}></Route>
+        <Route path = '/boardDetail/:board_idx' element={<BoradDetail />}></Route>
         <Route path = '/iot' element={<Iot/>}></Route>
         <Route path = '/login' element={<Login/>}></Route>
         <Route path = '/join' element={<Join/>}></Route>

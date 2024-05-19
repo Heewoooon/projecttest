@@ -12,3 +12,23 @@
 .numlist{
     margin-top: 3%;
 }
+
+.card.text-center a {
+    text-decoration: none;
+    color: black;
+    float: left;
+}
+
+.ulcenter {
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+
+}
+.ulcenter a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }

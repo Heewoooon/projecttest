@@ -2,22 +2,52 @@ import React, { useEffect, useState } from 'react'
 import './BoardStyles.css'
 import { Link } from 'react-router-dom'
 import axios from '../axios'
-const Board = () => {
+import Pagination from 'react-js-pagination'
 
-  const [board,setBoard] = useState([])
+const Board = () => {
+  // 게시판 구현 관련 변수
+  const MAX_LENGTH = 30;
+  const [board,setBorad] = useState({
+    title : [],
+    content : [],
+    content2 : [],
+    user : [],
+    bIdx : []
+  })
+
+  // 페이지네이션 구현 관련 변수
+  const [page, setPage] = useState(1);
+  const [currentPost,setcurrentPost] = useState(board.title)
+  const postPerPage = 6
+  const indexOfLastPost = page * postPerPage
+  const indexOfFirstPost = indexOfLastPost - postPerPage
+
   useEffect(()=>{
     axios.post("/boardloading",{
       message : 'boardloading'
     }).then((res)=> {
       console.log("react:",res)
-      setBoard(res.data)
-      })
+      setBorad(...[{
+        title : res.data.title.reverse(),
+        content : res.data.content.reverse(),
+        content2 : res.data.content2.reverse(),
+        user : res.data.user.reverse(),
+        bIdx : res.data.bIdx.reverse()
+      }])
+    })
   },[])
-  console.log(board)
-  return (
-    <div>
 
+  // 페이지네이션 구현 
+  useEffect(()=>{
+    setcurrentPost(board.title.slice(indexOfFirstPost,indexOfLastPost))
+  },[board,page])
+
+  const handlePageChange = (page) => { setPage(page); }
+
+  return (
     <div className='BoardContainer'>
+
+{/* 게시물 부분 */}
     <h1>커뮤니티</h1>
       <hr />
       <ul id='navbar' className='justify-content-end'>
@@ -25,80 +55,57 @@ const Board = () => {
               <Link  to={'/createboard'}>글작성</Link>
             </li>
       </ul>
-      <div>
-        {/* {board.map((item)=> {<p>{item[0]}</p>})} */}
+      <div className="row row-cols-1 row-cols-md-3 g-4 Boards">
+        {currentPost.map((boardIdxItem, index) => (
+          <div key={index} className="col">
+            <div className="card text-center">
+              <Link to={`/boardDetail/${page == 1 ?board.bIdx[index] :board.bIdx[index+((page-1)*5+1)]}`}>
+                {/* 이미지는 퍼블릭폴더에 이미지 파일을 따로 만들어서 불러오는 형식으로 제작할것 */}
+              <img src='/dogcomu.png' className="card-img-top" alt="이미지" />
+              <div className="card-body">
+                <h5 className="card-title">{boardIdxItem}</h5>
+                <p className="card-text">{board.content[index].length > MAX_LENGTH ? board.content[index].slice(0, MAX_LENGTH) + '...' : board.content[index]}</p>
+              </div>
+              </Link>
+            </div>
+          </div>
+        ))}
+
+
+{/* 버튼 부분 */}
+    {/* <nav aria-label="Page navigation example"> */}
+      <Pagination 
+        // 현제 보고있는 페이지 page
+          activePage={page} 
+        // 한페이지에 출력할 아이템수 items
+          itemsCountPerPage={postPerPage}
+        // 총 아이템수 데이터 갯수
+          totalItemsCount={board.title.length} 
+        // 표시할 페이지수
+          pageRangeDisplayed={5}
+        // 함수
+          onChange={handlePageChange}
+        // ul 클래스
+          innerClass = "pagination justify-content-center ulcenter"
+        // li 클래스
+          activeClass = "page-item disabled"
+        // a 클래스
+          activeLinkClass = "page-link"
+        // 다음 페이지 
+          nextPageText = "다음"
+        // 이전 페이지
+          prevPageText = "이전"
+        // 처음으로
+          firstPageText = ""
+        // 마지막으로
+          lastPageText = ""
+
+          >
+        </Pagination>
+    {/* </nav> */}
       </div>
-      <div class="row row-cols-1 row-cols-md-3 g-4 Boards">
-      <div className="col">
-          <div className="card text-center">
-          <img src='/dogcomu.png' className="card-img-top"  />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-          </div>
-        </div>
-
-
-        <div className="col">
-          <div className="card text-center">
-          <img src='/dogcomu.png' className="card-img-top"  />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="col">
-          <div className="card text-center">
-          <img src='/dogcomu.png' className="card-img-top"  />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">This is a  dlonger card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="col">
-          <div className="card text-center">
-          <img src='/dogcomu.png' className="card-img-top"  />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="col">
-          <div className="card text-center">
-          <img src='/dogcomu.png' className="card-img-top"  />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-
-      <div aria-label="Page navigation example ">
-        <ul className="pagination justify-content-center numlist">
-          <li className="page-item">
-            <a className="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li className="page-item">
-            <a className="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-
-        </ul>
-      </div>
-
     </div>
+
   )
 }
 
