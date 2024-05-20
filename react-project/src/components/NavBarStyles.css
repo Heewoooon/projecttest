@@ -1,3 +1,7 @@
+.hfirst {
+    background-color: greenyellow;
+}
+
 nav {
     display: flex;
     align-items: center;
@@ -20,15 +24,28 @@ nav {
 }
 
 li + li {
-    margin-left: 30px;
-}
+    margin-left: 50px;
 
+}
+ul {
+    text-align : center;
+}
 #navbar li a {
     text-decoration: none;
     font-size: 1.3rem;
     font-weight: 600;
     color: black;
     transition: 0.3s ease-in-out;
+    
+}
+
+#navbar li h5 {
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: black;
+    transition: 0.3s ease-in-out;
+    padding-top: 20%;
 }
 
 #navbar li a:hover,
@@ -53,4 +70,8 @@ a.nav-link{
     color: black;
     transition: 0.3s ease-in-out;
     color: black;
+}
+
+.mar1 {
+    padding-top: 3%;
 }

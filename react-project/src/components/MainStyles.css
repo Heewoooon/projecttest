@@ -1,4 +1,4 @@
-.Maincontainer {
+/* .Maincontainer {
     padding: 7%;
     width: 75%;
     display: fiex;
@@ -21,4 +21,21 @@
 
 .Mainitems p {
     margin-top: 10%;
+} */
+
+.Top {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.fdiv {
+    flex: 1;
+    overflow: hidden;
+}
+
+.fdiv img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover
 }

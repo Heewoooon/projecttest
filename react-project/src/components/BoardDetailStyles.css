@@ -1,0 +1,103 @@
+.BoardContainers {
+    padding: 7%;
+    width: 65%;
+    margin-left: 300px;
+    
+}
+
+.boardimg {
+    margin: 3%;
+}
+
+.Boarditem {
+    width: 100%;
+    height: 20%;
+    text-align: center;
+}
+.Boarditem img {
+    width: 50%;
+    height: 50%;
+}
+.user-time {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.user-time-item1 {
+    margin-bottom: -1%;
+    margin-right: auto;
+}
+.user-time-item2 {
+    margin-bottom: -1%;
+
+}
+.user-time-item3 {
+    margin-bottom: -1%;
+}
+
+.inputcommentcon{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.inputcomment {
+    width: 75%;
+    height: 4.25em;
+    flex : 1;
+    margin : 20px;
+    resize: none;
+
+
+}
+
+.inputcomment:focus {
+    outline: none;
+}
+
+.commentinput {
+    width: 20%;
+    height: 4.25em;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button {
+    margin: 20px;
+}
+
+.w-btn {
+    position: relative;
+    border: none;
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    /* box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); */
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.w-btn-indigo {
+    background-color: aliceblue;
+    color: #1e6b7b;
+}
+
+.commentgroup{
+    /*border-radius: 20%;*/
+    background-color: aliceblue;
+    color: #1e6b7b;
+    height: 20px;
+}
+
+.commentcon {
+    text-align: left;
+    margin-top: 1%;
+}
