@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "../axios";
 import "./Mypet.css";
-import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Mypet = () => {
   const [petname, setName] = useState([]);
   const [img, setImg] = useState([]);
-  const [current, setCurrent] = useState(0);
   const [weight, setWeight] = useState([]);
   const [petday, setPetday] = useState([]);
   const [breed, setBreed] = useState([]);
-
-  const handleOut = () => {
-    sessionStorage.removeItem("pet");
-    window.location.href = "/"; // 로그아웃 후 페이지 새로고침
-  };
 
   const dogsesssion = JSON.parse(sessionStorage.getItem("user"));
 
@@ -30,69 +26,66 @@ const Mypet = () => {
         setPetday(res.data.time);
         setBreed(res.data.breed);
       }
+      console.log(res.data.img)
     });
   }, []);
 
-  const nextImg = () => {
-    setCurrent((current + 1) % img.length);
-  };
 
-  const prevImg = () => {
-    setCurrent((current - 1 + img.length) % img.length);
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextImg();
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [current]);
-
-  if (!Array.isArray(img) || img.length <= 0) {
-    return null;
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows : true
   }
 
   return (
-    <div className="petbox">
-      <h1>마이펫 정보</h1>
+    <div className="mypetMain">
+      <h1>반려동물 리스트</h1>
       <hr />
-      <div className="imageSlider">
-        <IoIosArrowBack className="imageSlider-arrow left" size='30' onClick={prevImg}/>
-        <img src={img[current]} alt="Pet" className="image" />
-        
-        <IoIosArrowForward className="imageSlider-arrow right" size='30' onClick={nextImg}/>
-      </div>
-      <hr />
-      <div>
-      {petname.map((nameitem, index) => (
-        <div>
-          <ul>
-            <li>펫 이름 : {nameitem}</li>
-            <li>펫 체중 :{weight[index]} kg </li>
-            <li>견종 : {breed[index]}</li>
-            <li>펫 등록일자 :{petday[index]} </li>
-            <hr />
-          </ul>
+      <div className="banner-slider matop">
+        <Slider {...settings}>
+            {img.map((imgitem,index)=>(
+              <div key={index} className="slidercon">
+                <div className="slideritem sitme1">
+                  <img className="sliderinimg" src={imgitem}></img>
+                </div>
+                <div className="slideritem sitme2">
+                    <h3>펫 정보</h3>
+                      <p>이름 :{petname[index]}</p>
+                      <p>체중 :{weight[index]}</p>
+                      <p>날짜 :{petday[index]}</p>
+                      <p>견종 :{breed[index]}</p>
+                </div>
+              </div>
+            ))}
+        </Slider>
+        <div className="petliist">
+          <h3>반려동물 리스트</h3>
+          <hr />
+          {img.map((imgitem, index) => (
+            <div key={index} className="col petcontainner">
+              <div className="card text-center card-body">
+                <div className='divimg'>
+                  <img src={imgitem} className="divimgimg" alt="이미지" />
+                </div>
+                <div className="slideritem sitme2">
+                  <h3>펫 정보</h3>
+                    <p>이름 :{petname[index]}</p>
+                    <p>체중 :{weight[index]}</p>
+                    <p>날짜 :{petday[index]}</p>
+                    <p>견종 :{breed[index]}</p>
+                </div>
+              </div>
+            </div>
+            ))}
+          </div>
         </div>
-      ))}
-    </div>
     </div>
   );
 };
 
 export default Mypet;
-
-
-{/* <ul>
-           
-           <img
-             src={img[index]}
-             alt=""
-             style={{ maxWidth: "100%" }}
-           />
-           <li>펫 이름 : {nameitem}</li>
-           <li>펫 체중 :{weight[index]} </li>
-           <li>견종 : {breed[index]}</li>
-           <li>펫 등록일자 :{petday[index]} </li>
-         </ul> */}

@@ -247,7 +247,9 @@ app.post("/addpetlist",async(req,res)=>{
   let data = req.body.user
   console.log("펫 정보 추출 시도",data)
 
-  let sql = `select * from pet_infoss where user_id = '${data}' order by pet_idx`;
+  let sql = `select PET_IDX,PET_NAME,PET_WEIGHT,USER_ID,to_char(CREATED_AT, 'YYYY-MM-DD HH:MI:SS'),PET_BREED,PET_IMG from pet_infoss where user_id = '${data}' order by pet_idx`;
+
+  
   const petInfo ={
     // pet_infoss에 관련된 정보를 객체 상태로 받아옴
     idx : [],

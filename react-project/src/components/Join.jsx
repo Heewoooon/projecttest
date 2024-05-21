@@ -56,7 +56,7 @@ const Join = () => {
         alt=""
       />
       <form onSubmit={handleAddmem}>
-        <div className="formbox">
+        <div className="formboxs">
           <div className="mb-3 loginbox2">
             <label
               htmlFor="formGroupExampleInput"

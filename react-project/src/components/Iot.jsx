@@ -4,6 +4,7 @@ import axios from '../axios';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 
+
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 const Iot = () => {
   const dogsesssion = JSON.parse(sessionStorage.getItem("user"));
@@ -62,7 +63,7 @@ const Iot = () => {
         min: 0,
         max: 5,
         ticks: {
-          stepSize: 20,
+          stepSize: 1,
         }
       }
     }

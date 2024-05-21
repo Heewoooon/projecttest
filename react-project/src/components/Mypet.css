@@ -1,55 +1,85 @@
-.petbox{
-    padding: 7%;
-    width: 65%;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+.matop{
+  margin-top: 3%;
+}
+.mypetMain {
+  width: 65%;
+  margin: 2%;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 
-.imageSlider {
-    width: 600px;
-    height: 300px;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 20px;
-    z-index: 1;
-    align-items: center; /* 추가: 수직 정렬 */
-    display: flex; /* 추가: flex 컨테이너로 설정 */
-    justify-content: center; /* 추가: 수평 정렬 */
+.slidercon {
+  display: flex;
+  justify-content: space-between; /* 두 div 사이의 공간을 동일하게 */
+  width: 100%; /* 부모 div의 너비를 100%로 설정 */
 }
 
-.slide {
-    display: flex;
-    transition: transform 0.5s ease;
-    &.active {
-      transform: translateX(0);
-    }
-    &:not(.active) {
-      transform: translateX(100%);
-    }
+.slideritem {
+  width: 45%; /* 각 div의 너비를 45%로 설정하여 총 너비가 100%를 넘지 않도록 함 */
+  padding: 10px;
+  text-align: center;
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
 }
 
-.imageSlider-arrow {
-    position: absolute;
-    top: 150px;
-    background-color: rgba(141, 141, 141, 0.5);
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.5s ease;
-    z-index: 10;
-    &.left {
-      margin-left: 25px;
-      right: 550px;
-    }
-    &.right {
-      left: 550px;
-      margin-right: 25px;
-    }
-  }
-  
-  .image{
-    max-width: 100%; /* 이미지가 부모 요소에 맞춰질 수 있도록 설정 */
-    max-height: 100%; /* 이미지가 부모 요소에 맞춰질 수 있도록 설정 */
-  }
-  
+.sliderinimg {
+  max-width: 50%;
+  height: auto;
+  margin : 0 auto;
+  /* width: 50%; */
+}
+
+.sitme1 {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sitme2 {
+  height: 100%;
+  margin: 0 auto;
+  margin-bottom: 2%;
+}
+
+/* -------------------------------------------------------------- */
+.petliist{
+  margin-top: 3%;
+}
+
+/* Flexbox 컨테이너 설정 */
+.containner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* 각 item의 스타일 */
+.col {
+  flex: 1 1 calc(30% - 10px); /* 3개의 요소를 한 줄에 배치하고 간격을 조정 */
+  box-sizing: border-box;
+  margin: 5px; /* 요소 간의 간격 */
+}
+
+/* 추가 스타일 */
+.petcontainner {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.divimg {
+  margin-bottom: 10px;
+}
+
+.divimgimg {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.slideritem {
+  margin-top: 10px;
+}
