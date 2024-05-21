@@ -168,7 +168,7 @@ app.post("/mydog", async (req, res) => {
   // console.log("마이펫조회 시도");
   let data = req.body.user
   // console.log(data)
-  let sql = `select * from pet_infoss where user_id = '${data}' order by pet_idx`;
+  let sql = `select PET_IDX,PET_NAME,PET_WEIGHT,USER_ID,to_char(CREATED_AT, 'YYYY-MM-DD'),PET_BREED,PET_IMG from pet_infoss where user_id = '${data}' order by pet_idx`;
   
   // 여기서 데이터베이스 작업을 수행합니다.
   try {
@@ -247,7 +247,7 @@ app.post("/addpetlist",async(req,res)=>{
   let data = req.body.user
   console.log("펫 정보 추출 시도",data)
 
-  let sql = `select PET_IDX,PET_NAME,PET_WEIGHT,USER_ID,to_char(CREATED_AT, 'YYYY-MM-DD HH:MI:SS'),PET_BREED,PET_IMG from pet_infoss where user_id = '${data}' order by pet_idx`;
+  let sql = `select PET_IDX,PET_NAME,PET_WEIGHT,USER_ID,to_char(CREATED_AT, 'YYYY-MM-DD'),PET_BREED,PET_IMG from pet_infoss where user_id = '${data}' order by pet_idx`;
 
   
   const petInfo ={
@@ -287,7 +287,7 @@ app.post("/petWeDa",async(req,res)=>{
   let data = req.body.idx
   console.log("serverdata",data);
 
-  let sql = `select WEIGHT,to_char(WEIGHTED_AT, 'YYYY-MM-DD HH:MI:SS') from WEIGHT_INFO where pet_idx = '${data}' order by WEIGHTED_AT`;
+  let sql = `select WEIGHT,to_char(WEIGHTED_AT, 'YYYY-MM-DD') from WEIGHT_INFO where pet_idx = '${data}' order by WEIGHTED_AT`;
   try {
     const connection = await conn();
     const petdata = {

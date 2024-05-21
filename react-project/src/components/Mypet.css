@@ -65,9 +65,12 @@
 
 /* 추가 스타일 */
 .petcontainner {
+  width: 80%;
   background-color: #f9f9f9;
   padding: 10px;
   border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .divimg {
@@ -75,7 +78,7 @@
 }
 
 .divimgimg {
-  max-width: 100%;
+  max-width: 80%;
   height: auto;
   border-radius: 5px;
 }
@@ -83,3 +86,4 @@
 .slideritem {
   margin-top: 10px;
 }
+
