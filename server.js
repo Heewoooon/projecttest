@@ -18,9 +18,6 @@ app.get("/", (req, res) => {
   app.use("index");
 });
 
-// 이미지 디비넣기
-// app.post("/upload",async (req,res)=>{
-// }
 
 // 회원가입
 
@@ -144,6 +141,69 @@ app.post("/pwtry", async (req, res) => {
   }
 });
 
+// 펫 정보 등록
+app.post("/petinfo", async(req,res)=>{
+  console.log("펫정보 등록 시도")
+  console.log(req.body);
+  
+  let {petName, petWeight, userid, petBreed,imgs} = req.body;
+  let sql = `insert into pet_infoss values(pet_infoss_SEQ.NEXTVAL, '${petName}', ${petWeight}, '${userid}', sysdate, '${petBreed}','${imgs}')`;
+  
+  
+  try {
+    const connection = await conn();
+    const result = await connection.execute(sql, [], { autoCommit: true });
+    console.log("펫정보 등록 성공:", result);
+    res.status(200).send({ message: "펫정보가 성공적으로 등록되었습니다." });
+  } catch (error) {
+    console.error("펫정보 등록 실패:", error);
+    res.status(500).send({ message: "펫정보 등록에 실패했습니다." });
+  }
+})
+
+
+// 펫 정보 가져오기
+
+app.post("/mydog", async (req, res) => {
+  // console.log("마이펫조회 시도");
+  let data = req.body.user
+  // console.log(data)
+  let sql = `select * from pet_infoss where user_id = '${data}' order by pet_idx`;
+  
+  // 여기서 데이터베이스 작업을 수행합니다.
+  try {
+    const connection = await conn();
+    // 이제 connection 객체를 사용하여 데이터베이스 작업을 수행할 수 있습니다.
+
+    // 예: 간단한 쿼리 실행
+    const result = await connection.execute(sql);
+    // console.log("result:",result.rows);
+    let petList ={
+      pidx : [],
+      petName : [],
+      petW : [],
+      user : [],
+      time : [],
+      breed : [],
+      img : []
+    }
+    // console.log("index : ",result.rows.length)
+    for (let i=0; i<result.rows.length;i++) {
+      petList.pidx.push(result.rows[i][0]),
+      petList.petName.push(result.rows[i][1]),
+      petList.petW.push(result.rows[i][2]),
+      petList.user.push(result.rows[i][3]),
+      petList.time.push(result.rows[i][4]),
+      petList.breed.push(result.rows[i][5])
+      petList.img.push(result.rows[i][6])
+    }
+    res.json(petList)
+    // 연결 해제
+    await connection.close();
+  } catch (error) {
+    console.error("데이터베이스 작업 중 오류가 발생했습니다:", error);
+  }
+});
 // 밥주기 데이터 보내기
 
 app.post("/datat", async (req, res) => {
@@ -174,7 +234,7 @@ app.post("/datat", async (req, res) => {
 
 // 체중계데이터 받기
 
-app.post("/data", (req, res) => {
+app.post("/data",async (req, res) => {
   const receivedData = req.body;
   console.log("전송받은 데이터는", receivedData);
 
@@ -182,9 +242,72 @@ app.post("/data", (req, res) => {
   res.json(responseData);
 });
 
-app.get("/databasetest", (req, res) => {
-  console.log("디비 확인용 연결");
-});
+// 펫 체중 그래프 그리기 위한 펫 정보 전달 
+app.post("/addpetlist",async(req,res)=>{
+  let data = req.body.user
+  console.log("펫 정보 추출 시도",data)
+
+  let sql = `select * from pet_infoss where user_id = '${data}' order by pet_idx`;
+  const petInfo ={
+    // pet_infoss에 관련된 정보를 객체 상태로 받아옴
+    idx : [],
+    name : [],
+    weight : [],
+    user : [],
+    time : [],
+    breed : [],
+    img : []
+  }
+  // 여기서 데이터베이스 작업을 수행합니다.
+  try {
+    const connection = await conn();
+    const result = await connection.execute(sql);
+    for (let i=0;i<result.rows.length;i++){
+      petInfo.idx.push(result.rows[i][0])
+      petInfo.name.push(result.rows[i][1])
+      petInfo.weight.push(result.rows[i][2])
+      petInfo.user.push(result.rows[i][3])
+      petInfo.time.push(result.rows[i][4])
+      petInfo.breed.push(result.rows[i][5])
+      petInfo.img.push(result.rows[i][6])
+    }
+    res.json(petInfo);
+
+    // 연결 해제
+    await connection.close();
+  } catch (error) {
+    console.error("데이터베이스 작업 중 오류가 발생했습니다:", error);
+  }
+})
+
+// 펫 체중 및 측정날짜 추출 
+app.post("/petWeDa",async(req,res)=>{
+  let data = req.body.idx
+  console.log("serverdata",data);
+
+  let sql = `select WEIGHT,to_char(WEIGHTED_AT, 'YYYY-MM-DD HH:MI:SS') from WEIGHT_INFO where pet_idx = '${data}' order by WEIGHTED_AT`;
+  try {
+    const connection = await conn();
+    const petdata = {
+      time : [],
+      weight : []
+    }
+    const result = await connection.execute(sql);
+    console.log(result.rows);
+    for(let i=0; i<result.rows.length;i++){
+      petdata.time.push(result.rows[i][1])
+      petdata.weight.push(result.rows[i][0])
+    }
+    res.json(petdata);
+
+    // 연결 해제
+    await connection.close();
+  } catch (error) {
+    console.error("데이터베이스 작업 중 오류가 발생했습니다:", error);
+  }
+
+})
+
 
 // 이미지 저장
 // 이미지를 public/uploads 폴더에 저장하는 설정
@@ -259,7 +382,7 @@ app.get(`/boardread`,async (req,res)=>{
   try {
       // 데이터 베이스 부분
       const connection = await conn();
-      let sql =`select b_title,DBMS_LOB.SUBSTR(b_content, 3000, 1) as C1,DBMS_LOB.SUBSTR(b_content, 4000, 3001) as C2,CREATED_AT,B_VIEWS,B_LIKES,B_FILE,USER_ID
+      let sql =`select b_title,DBMS_LOB.SUBSTR(b_content, 3000, 1) as C1,DBMS_LOB.SUBSTR(b_content, 4000, 3001) as C2,to_char(CREATED_AT, 'YYYY-MM-DD HH:MI:SS'),B_VIEWS,B_LIKES,B_FILE,USER_ID
                   from board_info where b_idx = '${data}' order by created_at`
       // 게시글 관련 정보 전송 부분
       const result = await connection.execute(sql);
@@ -270,7 +393,8 @@ app.get(`/boardread`,async (req,res)=>{
 
       const connection2 = await conn();
       // 댓글 관련 정보 전송 부분 
-      let sql2 = `select USER_ID,CMT_CONTENT,CREATED_AT from comment_info where b_idx = '${data}' order by created_at`
+      let sql2 = `select USER_ID,CMT_CONTENT,to_char(CREATED_AT, 'YYYY-MM-DD HH:MI:SS') from comment_info where b_idx = '${data}' order by created_at`
+
       const result2 = await connection2.execute(sql2);
       console.log("댓글 정보 :", result2.rows);
       if (result2.rows.length != 0 ) {
@@ -366,28 +490,6 @@ app.post("/createboard",async(req,res)=>{
     }
     
 })
-
-// })
-
-// 이미지 저장
-// 이미지를 public/uploads 폴더에 저장하는 설정
-const storage2 = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./react-project/public/boardimg");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-
-const upload2 = multer({ storage: storage2 });
-
-// 클라이언트에서 이미지를 받는 엔드포인트
-app.post("/upload2", upload2.single("boardimg"), (req, res) => {
-  // 이미지 저장 후 public/uploads 폴더에 저장된 이미지의 경로를 클라이언트에게 전달
-  const imagePath = "/boardimg/" + req.file.filename;
-});
-
 
 app.listen(3000, () => {
   console.log("Node.js server is running on port 3000");

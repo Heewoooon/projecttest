@@ -59,9 +59,10 @@ const LoginLose = () => {
         <h1>아이디찾기</h1>
         <hr />
         <img
-          id="imgcss"
-          src="https://ideogram.ai/api/images/direct/ZUOT0aqhSUyEz-8_5RzBxw.png"
-        />
+        id="imgcss"
+        src="./logo2.png"
+        alt=""
+      />
         <form onSubmit={handleid}>
           <div className="lose_formBox">
             <div className="mb-3 loginbox2">
@@ -100,9 +101,10 @@ const LoginLose = () => {
         <h1>비밀번호찾기</h1>
         <hr />
         <img
-          id="imgcss"
-          src="https://ideogram.ai/api/images/direct/whHdQyIvTYyOfCB0YNn4EA.png"
-        />
+        id="imgcss"
+        src="./logo2.png"
+        alt=""
+      />
         <form onSubmit={handlepw}>
           <div className="formBox">
             <div className="mb-3 loginbox2">

@@ -23,11 +23,24 @@ const Main = () => {
       // </div>
       <div className='Top'>
         <div className='fdiv'>
-          <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fimage.nmv.naver.net%2Fcafe_2021_10_15_535%2F0edadd66-2d79-11ec-9524-505dacfbaa5c_01.jpg&type=ofullfill340_600_png" alt="" />
+          <img src="/mainpage.jpg" alt=""  style={{height: '820px'}}/>
         </div>
-        <div className='fdiv'>
-        <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fimage.nmv.naver.net%2Fcafe_2021_10_15_535%2F0edadd66-2d79-11ec-9524-505dacfbaa5c_01.jpg&type=ofullfill340_600_png" alt="" />
+        <div className='fdiv' style={{display: 'flex', flexDirection : 'column', justifyContent : 'center'}} >
+          <div style={{display : 'flex', alignItems : 'center', flexDirection : 'row'}}>
+            <div></div>
+            <div>
+              <img className='wimg' src="/main2.png" alt=""  style={{width : "650px"}}/>
+            </div>
+          </div>
+          <div style={{display : 'flex', alignItems : 'center', flexDirection : 'row'}}>
+            
+              <div style={{flex : 1}}></div>
+              <div>
+                <img className='wimg' src="/main1.png" alt="" style={{width : "650px"}}/>
+              </div>
+            
         </div>
+      </div>
       </div>
   );
 };

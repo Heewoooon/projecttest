@@ -2,7 +2,6 @@ import axios from '../axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import './BoardDetailStyles.css'
-import { format } from 'date-fns';
 
 const BoradDetail = () => {
   const dogsesssion = JSON.parse(sessionStorage.getItem("user"));

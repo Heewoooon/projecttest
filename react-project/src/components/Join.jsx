@@ -52,7 +52,7 @@ const Join = () => {
       <h1>회원가입</h1>
       <img
         id="imgcss"
-        src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA2MDNfMjg3%2FMDAxNjg1Nzc0MDcwMDgz.zfaKm4c5lDDiy_r5JYLKvCA9EefCDwX85vFtBahiJfMg.lsBi5DXhjuGcJGOyxei2XwES2Se4GNp-3RhWJpnp1-4g.JPEG.2daenggu%2F311619686_170623702227257_1514842534332662795_n.jpg&type=a340"
+        src="./logo2.png"
         alt=""
       />
       <form onSubmit={handleAddmem}>

@@ -1,0 +1,34 @@
+.iotcon{
+    padding: 5%;
+    width: 65%;
+    margin-left: 300px;
+    text-align: center;
+    align-items: center;
+}
+
+.petbtn{
+    width: 100%;
+    
+}
+
+.chartcon{
+    width: 100%;
+    margin-top: 5%;
+    /* margin-left: auto; */
+}
+
+
+.tablecon table{
+    width: 100%;
+    margin-top: 5%;
+    border: 1px solid;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
